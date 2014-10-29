@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Channels</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="addChannelMessage">Add Channels</string>
+    <string name="addTvChannelsMessage">Add TV Channels</string>
+    <string name="viewTvChannelMessage">View TV Channels</string>
+    <string name="title_activity_add_channels">Add Channels</string>
+    <string name="title_activity_add_tv_channels">Add Tv Channels</string>
+    <string name="title_activity_view_tv_channels">View Tv Channels</string>
+    <string name="tvNameMessage">Enter TV Name</string>
+    <string name="hboText">HBO</string>
+    <string name="saveTvChannelsMessage">Save</string>
+    <string name="editMessage">Edit</string>
+    <string name="deleteMessage">Delete</string>
+</resources>

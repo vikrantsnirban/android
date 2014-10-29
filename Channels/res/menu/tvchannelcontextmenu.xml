@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item android:id="@+id/tvchannel_editchannel" android:title="@string/editMessage"></item>
+    <item android:id="@+id/tvchannel_deletechannel" android:title="@string/deleteMessage"></item>
+    
+
+</menu>
