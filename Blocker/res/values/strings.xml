@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Blocker</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="addRuleMessage">Add Rules</string>
+    <string name="saveMessage">Save</string>
+
+    <string-array name="rules">
+        <item>Start With</item>
+        <item>End With</item>
+        <item>Cotains</item>
+        <item>Format</item>
+    </string-array>
+
+    <string name="title_activity_view_rules">ViewRulesActivity</string>
+
+    <string name="viewRulesMessage">View Rules</string>
+
+    <string name="deleteRule">Delete Rule</string>
+
+</resources>
