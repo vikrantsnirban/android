@@ -17,13 +17,13 @@ import android.widget.ListView;
 
 public class ViewRulesActivity extends Activity {
 	ListView listRules;
-
+	SimpleCursorAdapter adapter;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_view_rules);
 		listRules = (ListView)findViewById(R.id.listRules);
-		SimpleCursorAdapter adapter = new SimpleCursorAdapter(this, R.layout.columns, new RulesDataManager(this).getAllRulesCursor(), new String[]{RulesDataManager.ruleCriteria, RulesDataManager.ruleExpression}, new int [] {R.id.viewRules_txtRuleCriteria, R.id.viewRules_txtExpression});
+		adapter = new SimpleCursorAdapter(this, R.layout.columns, new RulesDataManager(this).getAllRulesCursor(), new String[]{RulesDataManager.ruleCriteria, RulesDataManager.ruleExpression}, new int [] {R.id.viewRules_txtRuleCriteria, R.id.viewRules_txtExpression});
 		listRules.setAdapter(adapter);
 		registerForContextMenu(listRules);
 
@@ -61,6 +61,7 @@ public class ViewRulesActivity extends Activity {
 	    	case R.id.rulecontext_delete:
 	    		Cursor cursor = (Cursor)listRules.getAdapter().getItem(info.position);
 		    	new RulesDataManager(this).deleteRule(new Rule(cursor.getString(cursor.getColumnIndex(RulesDataManager.ruleCriteria)), cursor.getString(cursor.getColumnIndex(RulesDataManager.ruleExpression))));
+		    	adapter.changeCursor(new RulesDataManager(this).getAllRulesCursor());
 	    }
 		return true;
 		

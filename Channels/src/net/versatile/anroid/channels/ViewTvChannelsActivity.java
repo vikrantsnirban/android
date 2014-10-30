@@ -37,7 +37,7 @@ public class ViewTvChannelsActivity extends Activity {
 		cursor = new ChannelService(this).getTvChannels(null);
 		simpleCursorAdapter = new SimpleCursorAdapter(this, R.layout.rows, cursor, from, to);
 		listView.setAdapter(simpleCursorAdapter);
-		listAdapter = new ArrayAdapter<TvChannel>(this, R.layout.rows, new ChannelService(this).getAllTvChannels(null));
+//		listAdapter = new ArrayAdapter<TvChannel>(this, R.layout.rows, new ChannelService(this).getAllTvChannels(null));
 		//listView.setAdapter(listAdapter);
 		registerForContextMenu(listView);
 	}
@@ -91,6 +91,8 @@ public class ViewTvChannelsActivity extends Activity {
 	    	String channelName = cursor.getString(cursor.getColumnIndex(ChannelService.channelName));
 	    	new ChannelService(this).deleteChannel(new TvChannel(cursor.getString(cursor.getColumnIndex(ChannelService.tvName)), channelName, cursor.getInt(cursor.getColumnIndex(ChannelService.channelNumber))));
 	    	Log.d(TAG, "Deleting " + channelName);
+	    	simpleCursorAdapter.changeCursor(new ChannelService(this).getTvChannels(null));
+
 	    }
 
 	    return true; 
