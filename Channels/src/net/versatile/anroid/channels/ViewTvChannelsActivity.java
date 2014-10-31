@@ -17,6 +17,8 @@ import android.view.View;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 public class ViewTvChannelsActivity extends Activity {
 	String TAG = "ViewTvChannelsActivity";
@@ -34,26 +36,30 @@ public class ViewTvChannelsActivity extends Activity {
 		setContentView(R.layout.activity_view_tv_channels);
 		
 		listView = (ListView) findViewById(R.id.tvChannelList);
+		
 		cursor = new ChannelService(this).getTvChannels(null);
-		simpleCursorAdapter = new SimpleCursorAdapter(this, R.layout.rows, cursor, from, to);
-		listView.setAdapter(simpleCursorAdapter);
-//		listAdapter = new ArrayAdapter<TvChannel>(this, R.layout.rows, new ChannelService(this).getAllTvChannels(null));
-		//listView.setAdapter(listAdapter);
-		registerForContextMenu(listView);
+		if(cursor.getCount() > 0){
+			simpleCursorAdapter = new SimpleCursorAdapter(this, R.layout.rows, cursor, from, to);
+			listView.setAdapter(simpleCursorAdapter);
+			registerForContextMenu(listView);
+		}else{
+			TextView noDataTextView = new TextView(this);
+			noDataTextView.setText("No Tv Channel Added.!!");
+			RelativeLayout layout = (RelativeLayout) findViewById(R.id.tvChannelParent);
+			layout.addView(noDataTextView);
+			
+			
+		}
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.view_tv_channels, menu);
 		return true;
 	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
 		if (id == R.id.action_settings) {
 			return true;
@@ -75,17 +81,16 @@ public class ViewTvChannelsActivity extends Activity {
 	    switch(item.getItemId())
 	    {
 	    case R.id.tvchannel_editchannel:
-	    	//Log.d(TAG, "Editing " + listView.getAdapter().getItem(info.position));
 	    	cursor = (Cursor)listView.getAdapter().getItem(info.position);
 	    	TvChannel tvChannel = new TvChannel(cursor.getString(cursor.getColumnIndex(ChannelService.tvName)), cursor.getString(cursor.getColumnIndex(ChannelService.channelName)), cursor.getInt(cursor.getColumnIndex(ChannelService.channelNumber)));
 	    	Intent intent = new Intent(this, AddTvChannelsActivity.class);
-	    	//intent.putExtra("tvName", tvChannel.getTvName() != null ? tvChannel.getTvName() : "Default");
 	    	intent.putExtra("tvName", cursor.getString(cursor.getColumnIndex(ChannelService.tvName)));
 	    	intent.putExtra("channelNumber", cursor.getString(cursor.getColumnIndex(ChannelService.channelNumber)));
 	    	intent.putExtra("channelName", cursor.getString(cursor.getColumnIndex(ChannelService.channelName)));
 	    	startActivity(intent);
 	    	Log.d(TAG, "Editing " + tvChannel.getChannelName());
-	        return true;
+	        
+	        
 	    case R.id.tvchannel_deletechannel:
 	    	cursor = (Cursor)listView.getAdapter().getItem(info.position);
 	    	String channelName = cursor.getString(cursor.getColumnIndex(ChannelService.channelName));

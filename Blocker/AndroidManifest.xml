@@ -36,6 +36,7 @@
             android:name=".ViewRulesActivity"
             android:label="@string/title_activity_view_rules" >
         </activity>
+        
     </application>
 
 </manifest>

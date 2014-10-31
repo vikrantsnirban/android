@@ -14,6 +14,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 public class ViewRulesActivity extends Activity {
 	ListView listRules;
@@ -23,9 +25,17 @@ public class ViewRulesActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_view_rules);
 		listRules = (ListView)findViewById(R.id.listRules);
-		adapter = new SimpleCursorAdapter(this, R.layout.columns, new RulesDataManager(this).getAllRulesCursor(), new String[]{RulesDataManager.ruleCriteria, RulesDataManager.ruleExpression}, new int [] {R.id.viewRules_txtRuleCriteria, R.id.viewRules_txtExpression});
-		listRules.setAdapter(adapter);
-		registerForContextMenu(listRules);
+		Cursor cursor = new RulesDataManager(this).getAllRulesCursor();
+		if(cursor.getCount() > 0) {
+			adapter = new SimpleCursorAdapter(this, R.layout.columns, cursor, new String[]{RulesDataManager.ruleCriteria, RulesDataManager.ruleExpression}, new int [] {R.id.viewRules_txtRuleCriteria, R.id.viewRules_txtExpression});
+			listRules.setAdapter(adapter);
+			registerForContextMenu(listRules);
+		}else{
+			TextView noDataTextView = new TextView(this);
+			noDataTextView.setText("No Rules.!!");
+			RelativeLayout layout = (RelativeLayout) findViewById(R.id.viewRulesParent);
+			layout.addView(noDataTextView);	
+		}
 
 	}
 
