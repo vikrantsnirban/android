@@ -19,5 +19,9 @@
     <string name="viewRulesMessage">View Rules</string>
 
     <string name="deleteRule">Delete Rule</string>
+    
+    <string name="title_activity_view_log">ViewLogActivity</string>
+    
+    <string name="viewLogMessage">View Logs</string>
 
 </resources>

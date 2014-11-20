@@ -3,6 +3,7 @@ package net.versatile.android.blocker.service;
 import java.lang.reflect.Method;
 import java.util.List;
 
+import net.versatile.android.blocker.dto.CallLog;
 import net.versatile.android.blocker.dto.Rule;
 import net.versatile.android.blocker.utils.RuleUtils;
 import android.content.BroadcastReceiver;
@@ -63,6 +64,7 @@ public class CallHandler extends BroadcastReceiver{
 						  } catch (Exception e) {
 						   e.printStackTrace();
 						  }
+			   new RulesDataManager(context).saveLog(new CallLog(incomingNumber, null, 0));
 			}
 
 		}

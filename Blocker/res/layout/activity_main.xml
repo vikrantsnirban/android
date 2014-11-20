@@ -55,4 +55,14 @@
         android:text="@string/viewRulesMessage" 
         android:onClick="handleViewRules"/>
 
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/button2"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="31dp"
+        android:onClick="handleViewLogs"
+        android:text="@string/viewLogMessage" />
+
 </RelativeLayout>

@@ -37,6 +37,11 @@
             android:label="@string/title_activity_view_rules" >
         </activity>
         
+        <activity
+            android:name=".ViewLogActivity"
+            android:label="@string/title_activity_view_log" >
+        </activity>
+        
     </application>
 
 </manifest>

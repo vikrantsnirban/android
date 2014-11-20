@@ -57,4 +57,8 @@ public class MainActivity extends Activity {
 	public void handleViewRules(View view){
 		startActivity(new Intent(this, ViewRulesActivity.class));
 	}
+	
+	public void handleViewLogs(View view){
+		startActivity(new Intent(this, ViewLogActivity.class));
+	}
 }
